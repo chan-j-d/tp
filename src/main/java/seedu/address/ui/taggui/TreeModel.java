@@ -1,5 +1,7 @@
 package seedu.address.ui.taggui;
 
+import seedu.address.model.tag.Tag;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +19,9 @@ public class TreeModel {
     List<Edge> addedEdges;
     List<Edge> removedEdges;
 
-    Map<String,Cell> cellMap; // <id,cell>
+    Map<Tag,Cell> cellMap; // <id,cell>
 
     public TreeModel() {
-
-        graphParent = new Cell( "_ROOT_");
 
         // clear model, create lists
         clear();
@@ -40,6 +40,7 @@ public class TreeModel {
         cellMap = new HashMap<>(); // <id,cell>
 
     }
+
 
     public void clearAddedLists() {
         addedCells.clear();
@@ -79,7 +80,7 @@ public class TreeModel {
 
         addedCells.add(cell);
 
-        cellMap.put( cell.getCellId(), cell);
+        cellMap.put( cell.getTag(), cell);
 
     }
 

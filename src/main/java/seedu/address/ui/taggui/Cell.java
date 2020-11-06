@@ -4,18 +4,19 @@ import java.util.List;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import seedu.address.model.tag.Tag;
 
 public class Cell extends Pane {
 
-    String cellId;
+    Tag tag;
 
     List<Cell> children = new ArrayList<>();
     List<Cell> parents = new ArrayList<>();
 
     Node view;
 
-    public Cell(String cellId) {
-        this.cellId = cellId;
+    public Cell(Tag tag) {
+        this.tag = tag;
     }
 
     public void addCellChild(Cell cell) {
@@ -49,7 +50,7 @@ public class Cell extends Pane {
         return this.view;
     }
 
-    public String getCellId() {
-        return cellId;
+    public Tag getTag() {
+        return tag;
     }
 }
