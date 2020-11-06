@@ -52,5 +52,13 @@ public class TreeModel {
         cellMap.get(tag).relocate(xCoordinate, yCoordinate);
     }
 
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public List<Cell> getCells() {
+        return cells;
+    }
+
 
 }

@@ -74,6 +74,14 @@ public class TagTreeImpl extends TagTree {
         return Map.copyOf(tempMap);
     }
 
+    @Override
+    public Map<Tag, Set<Tag>> getTagSuperTagMap() {
+        Map<Tag, Set<Tag>> tempMap = new HashMap<>();
+        tagSuperTagMap.entrySet().stream().forEach(entry ->
+                tempMap.put(entry.getKey(), Set.copyOf(entry.getValue())));
+        return Map.copyOf(tempMap);
+    }
+
     Map<Tag, Set<Tag>> getInternalTagSubTagMap() {
         return tagSubTagMap;
     }

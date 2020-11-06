@@ -16,6 +16,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
+import seedu.address.ui.taggui.TagGuiTest;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -256,5 +258,12 @@ public class MainWindow extends UiPart<Stage> {
             resultPanel.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+
+    public CommandResult showTagGui() {
+        TagGuiTest test = new TagGuiTest();
+        test.show();
+        return new CommandResult("test shown");
     }
 }

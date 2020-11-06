@@ -15,6 +15,11 @@ public abstract class TagTree implements ReadOnlyTagTree {
     public abstract Map<Tag, Set<Tag>> getTagSubTagMap();
 
     /**
+     * Returns a map of all tags to a set of their parent-tags.
+     */
+    public abstract Map<Tag, Set<Tag>> getTagSuperTagMap();
+
+    /**
      * Returns all {@code tag}s with at least one sub-tag.
      */
     public abstract Set<Tag> getSuperTags();

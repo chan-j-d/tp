@@ -1,6 +1,7 @@
 package seedu.address.ui.taggui;
 
 import javafx.scene.layout.Pane;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import javafx.scene.Group;
         import javafx.scene.control.ScrollPane;
@@ -29,44 +30,46 @@ public class TagGraph {
      * the top-most and left-most child to the top and left eg when you drag the
      * top child down, the entire scrollpane would move down
      */
-    //CellLayer cellLayer;
+    Pane cellLayer;
 
     public TagGraph() {
 
         this.model = new TreeModel();
 
         canvas = new Group();
-        //cellLayer = new CellLayer();
+        cellLayer = new Pane();
 
-        //canvas.getChildren().add(cellLayer);
+        canvas.getChildren().add(cellLayer);
 
         scrollPane = new ZoomableScrollPane(canvas);
 
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
 
-        canvas.getChildren().add(scrollPane);
     }
 
-    public void addTagTree(TagTree tagTree, TagManager manager) {
+    public void addTagTree(TagTree tagTree, AddressBook contactTagMap) {
         Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
         for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
             Tag key = entry.getKey();
             if (!model.containsTag(key)) {
-                model.addCell(key, getSummaryOfTag(manager, key));
+                model.addCell(key, getSummaryOfTag(contactTagMap, key));
             }
 
             entry.getValue().forEach(tag -> {
                 if (!model.containsTag(tag)) {
-                    model.addCell(tag, getSummaryOfTag(manager, tag));
+                    model.addCell(tag, getSummaryOfTag(contactTagMap, tag));
                 }
                 model.addEdge(key, tag);
             });
         }
+
+        getCellLayer().getChildren().addAll(model.getEdges());
+        getCellLayer().getChildren().addAll(model.getCells());
     }
 
-    private String getSummaryOfTag(TagManager manager, Tag tag) {
-        Set<Person> personSet = manager.getPersonsUnderTag(tag);
+    private String getSummaryOfTag(AddressBook contactTagMap, Tag tag) {
+        Set<Person> personSet = contactTagMap.getPersonsWithTag(tag);
         if (personSet.size() == 0) {
             return MESSAGE_NO_CONTACTS;
         }
@@ -100,8 +103,7 @@ public class TagGraph {
     }
 
     public Pane getCellLayer() {
-        //return this.cellLayer;
-        return null;
+        return this.cellLayer;
     }
     public TreeModel getModel() {
         return model;
