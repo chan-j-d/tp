@@ -27,23 +27,28 @@ public class TagCell extends Cell {
         verticalBox.setMinWidth(NODE_WIDTH);
         verticalBox.setMaxHeight(NODE_HEIGHT);
         verticalBox.setMinHeight(NODE_HEIGHT);
+
         String text = tag.toString();
-        Label upperHalf = new Label(text);
-        upperHalf.setTextAlignment(TextAlignment.CENTER);
-        upperHalf.setBackground(getColoredBackground(Color.CADETBLUE));
-        Label lowerHalf = new Label(contactsDetail);
-        lowerHalf.setTextAlignment(TextAlignment.CENTER);
-        lowerHalf.setBackground(getColoredBackground(Color.SKYBLUE));
+
+        Label upperHalf = createLabelBox(text, Color.CADETBLUE, NODE_HEIGHT / 2, NODE_WIDTH);
+        Label lowerHalf = createLabelBox(contactsDetail, Color.SKYBLUE, NODE_HEIGHT / 2, NODE_WIDTH);
+
         verticalBox.getChildren().addAll(upperHalf, lowerHalf);
 
         setView(verticalBox);
+    }
+
+    private Label createLabelBox(String text, Color color, double height, double width) {
+        Label label = new Label(text);
+        label.setBackground(getColoredBackground(color));
+        label.setTextAlignment(TextAlignment.CENTER);
+        return label;
     }
 
     private Background getColoredBackground(Color color) {
         CornerRadii cornerRadii = new CornerRadii(0);
         BackgroundFill fill = new BackgroundFill(color, cornerRadii, new Insets(0));
         return new Background(fill);
-
     }
 
 
