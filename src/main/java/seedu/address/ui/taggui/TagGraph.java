@@ -91,6 +91,10 @@ public class TagGraph {
         return string;
     }
 
+    public void setCellLocation(Tag tag, double xCoordinate, double yCoordinate) {
+        model.setCellLocation(tag, xCoordinate, yCoordinate);
+    }
+
     public ScrollPane getScrollPane() {
         return this.scrollPane;
     }

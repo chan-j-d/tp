@@ -48,5 +48,9 @@ public class TreeModel {
         edges.add(edge);
     }
 
+    public void setCellLocation(Tag tag, double xCoordinate, double yCoordinate) {
+        cellMap.get(tag).relocate(xCoordinate, yCoordinate);
+    }
+
 
 }
