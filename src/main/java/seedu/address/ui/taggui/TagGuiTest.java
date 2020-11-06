@@ -55,6 +55,7 @@ public class TagGuiTest {
         Layout layout = new GraphLayout(graph, levelTagMap);
 
         layout.execute();
+        graph.addEdges(tagTree);
 
     }
 

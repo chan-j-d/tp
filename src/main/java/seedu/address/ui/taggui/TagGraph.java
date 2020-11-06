@@ -60,12 +60,19 @@ public class TagGraph {
                 if (!model.containsTag(tag)) {
                     model.addCell(tag, getSummaryOfTag(contactTagMap, tag));
                 }
-                model.addEdge(key, tag);
             });
         }
 
-        getCellLayer().getChildren().addAll(model.getEdges());
         getCellLayer().getChildren().addAll(model.getCells());
+    }
+
+    public void addEdges(TagTree tagTree) {
+        Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
+        for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
+            Tag key = entry.getKey();
+            entry.getValue().forEach(subTag -> model.addEdge(key, subTag));
+        }
+        getCellLayer().getChildren().addAll(model.getEdges());
     }
 
     private String getSummaryOfTag(AddressBook contactTagMap, Tag tag) {
@@ -80,6 +87,7 @@ public class TagGraph {
         for (Person person : personSet) {
             if (!first) {
                 string = string + ", ";
+            } else {
                 first = false;
             }
 
