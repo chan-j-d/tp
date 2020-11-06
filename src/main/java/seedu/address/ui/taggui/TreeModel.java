@@ -34,6 +34,10 @@ public class TreeModel {
 
     }
 
+    public boolean containsTag(Tag tag) {
+        return cellMap.containsKey(tag);
+    }
+
     public void addEdge(Tag parentTag, Tag childTag) {
 
         Cell sourceCell = cellMap.get(parentTag);

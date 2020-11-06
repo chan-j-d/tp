@@ -10,6 +10,8 @@ public class TagCell extends Cell {
     public static final double NODE_WIDTH = 500;
     public static final double NODE_HEIGHT = 200;
 
+    public static final int LIMIT_CHARACTER = 50;
+
     public TagCell(Tag tag, String contactsDetail) {
         super(tag);
 

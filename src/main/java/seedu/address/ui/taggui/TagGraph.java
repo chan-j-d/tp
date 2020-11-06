@@ -4,8 +4,19 @@ import javafx.scene.layout.Pane;
 import seedu.address.model.Model;
 import javafx.scene.Group;
         import javafx.scene.control.ScrollPane;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagManager;
+import seedu.address.model.tag.TagTree;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class TagGraph {
+
+    public static final String MESSAGE_NO_CONTACTS = "No tagged contacts";
+    public static final String MESSAGE_NUM_REMAINING_CONTACTS = "%s other contacts";
 
     private TreeModel model;
 
@@ -34,6 +45,50 @@ public class TagGraph {
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
 
+        canvas.getChildren().add(scrollPane);
+    }
+
+    public void addTagTree(TagTree tagTree, TagManager manager) {
+        Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
+        for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
+            Tag key = entry.getKey();
+            if (!model.containsTag(key)) {
+                model.addCell(key, getSummaryOfTag(manager, key));
+            }
+
+            entry.getValue().forEach(tag -> {
+                if (!model.containsTag(tag)) {
+                    model.addCell(tag, getSummaryOfTag(manager, tag));
+                }
+                model.addEdge(key, tag);
+            });
+        }
+    }
+
+    private String getSummaryOfTag(TagManager manager, Tag tag) {
+        Set<Person> personSet = manager.getPersonsUnderTag(tag);
+        if (personSet.size() == 0) {
+            return MESSAGE_NO_CONTACTS;
+        }
+        int fullCount = personSet.size();
+        int currentCount = 0;
+        String string = "";
+        boolean first = true;
+        for (Person person : personSet) {
+            if (!first) {
+                string = string + ", ";
+                first = false;
+            }
+
+            if (string.length() + person.getName().toString().length() > TagCell.LIMIT_CHARACTER) {
+                string = string + String.format(MESSAGE_NUM_REMAINING_CONTACTS, fullCount - currentCount);
+                break;
+            }
+
+            string = string + person.getName().toString();
+            currentCount++;
+        }
+        return string;
     }
 
     public ScrollPane getScrollPane() {
@@ -48,29 +103,6 @@ public class TagGraph {
         return model;
     }
 
-    public void beginUpdate() {
-    }
-
-    public void endUpdate() {
-        // add components to graph pane
-        getCellLayer().getChildren().addAll(model.getAddedEdges());
-        getCellLayer().getChildren().addAll(model.getAddedCells());
-
-        // remove components from graph pane
-        getCellLayer().getChildren().removeAll(model.getRemovedCells());
-        getCellLayer().getChildren().removeAll(model.getRemovedEdges());
-
-        // every cell must have a parent, if it doesn't, then the graphParent is
-        // the parent
-        getModel().attachOrphansToGraphParent(model.getAddedCells());
-
-        // remove reference to graphParent
-        getModel().disconnectFromGraphParent(model.getRemovedCells());
-
-        // merge added & removed cells with all cells
-        getModel().merge();
-
-    }
 
     public double getScale() {
         return this.scrollPane.getScaleValue();
