@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class GraphLayout implements Layout {
 
-    public static final double GAP_VERTICAL = TagCell.NODE_HEIGHT * 2;
+    public static final double GAP_VERTICAL = TagCell.NODE_HEIGHT;
     public static final double GAP_HORIZONTAL = TagCell.NODE_WIDTH * 0.5;
 
     private final TagGraph graph;
