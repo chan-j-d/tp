@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private IntroWindow introWindow;
     private ReminderWindow reminderWindow;
+    private TagGuiTest tagTreeWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -74,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         introWindow = new IntroWindow();
         reminderWindow = new ReminderWindow(logic);
+        tagTreeWindow = new TagGuiTest(logic.getTagTree(), logic.getAddressBook());
     }
 
     public Stage getPrimaryStage() {
@@ -191,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    private void handleTagTreeView() {
+        if (!)
     }
 
     public PersonListPanel getPersonListPanel() {

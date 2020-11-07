@@ -160,7 +160,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public Set<Person> getPersonsWithTag(Tag tag) {
-        return tagManager.getPersonsUnderTag(tag);
+        return Set.copyOf(tagManager.getPersonsUnderTag(tag));
     }
 
     public Set<Tag> getTags() {

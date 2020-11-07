@@ -13,4 +13,9 @@ public interface ReadOnlyTagTree {
      */
     Map<Tag, Set<Tag>> getTagSubTagMap();
 
+    /**
+     * Returns an unmodifiable view of all tags and their supertags.
+     */
+    Map<Tag, Set<Tag>> getTagSuperTagMap();
+
 }

@@ -13,6 +13,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminders;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.ReadOnlyTagTree;
 
 /**
  * API of the Logic component
@@ -54,6 +55,13 @@ public interface Logic {
      * @see seedu.address.model.Model#getReminders()
      */
     ReadOnlyReminders getReminders();
+
+    /**
+     * Returns the Tag Tree
+     *
+     * @see seedu.address.model.Model#getTagTree()
+     */
+    ReadOnlyTagTree getTagTree();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();

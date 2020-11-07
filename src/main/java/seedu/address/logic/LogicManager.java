@@ -20,6 +20,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminders;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tag.ReadOnlyTagTree;
 import seedu.address.storage.Storage;
 
 /**
@@ -94,6 +95,11 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyReminders getReminders() {
         return model.getReminders();
+    }
+
+    @Override
+    public ReadOnlyTagTree getTagTree() {
+        return model.getTagTree();
     }
 
     @Override

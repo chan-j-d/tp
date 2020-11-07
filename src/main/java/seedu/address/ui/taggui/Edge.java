@@ -31,7 +31,6 @@ public class Edge extends Group {
         line.endYProperty().bind(target.layoutYProperty());
 
         getChildren().add(line);
-        System.out.println("line in constructor: " + line);
         getChildren().addAll(createArrowLines());
 
     }
@@ -72,7 +71,6 @@ public class Edge extends Group {
             arrow2.setStartX(dX * cosTheta - dY * sinTheta + endX);
             arrow2.setStartY(dX * sinTheta + dY * cosTheta + endY);
         }
-        System.out.println(arrow1 + " " + arrow2);
         return List.of(arrow1, arrow2);
     }
 

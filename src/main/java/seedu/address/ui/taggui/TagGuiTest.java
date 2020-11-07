@@ -5,15 +5,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ContactTagIntegrationManager;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ReadOnlyTagTree;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagTree;
 import seedu.address.model.tag.TagTreeImpl;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.ui.UiPart;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,23 +26,46 @@ import java.util.Set;
 
 public class TagGuiTest {
 
-    TagGraph graph = new TagGraph();
-    Stage stage;
+    private final TagGraph graph;
+    private final Stage stage;
+    private final ReadOnlyTagTree tagTree;
+    private final ReadOnlyAddressBook addressBook;
 
-    public TagGuiTest() {
+    public TagGuiTest(ReadOnlyTagTree tagTree, ReadOnlyAddressBook addressBook) {
         stage = new Stage();
         start(stage);
+        graph = new TagGraph();
+        this.tagTree = tagTree;
+        this.addressBook = addressBook;
+    }
+
+    private void updateGraph() {
+        graph.addTagTree(tagTree, addressBook);
+        Map<Integer, Set<Tag>> levelTagMap =
+                GraphLevelAlgorithm.calculateLevels(tagTree.getTagSubTagMap(), tagTree.getTagSuperTagMap());
+        Layout layout = new GraphLayout(graph, levelTagMap);
+        layout.execute();
+        graph.addEdges(tagTree);
     }
 
     public void show() {
+        updateGraph();
         stage.show();
+    }
+
+    public void focus() {
+        updateGraph();
+        stage.requestFocus();
+    }
+
+    public void hide() {
+        stage.hide();
     }
 
 
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
 
-        graph = new TagGraph();
         ContactTagIntegrationManager manager = buildTestContactTagIntegrationManager();
         graph.addTagTree(manager.getTagTree(), manager.getAddressBook());
         TagTree tagTree = manager.getTagTree();
@@ -49,14 +75,6 @@ public class TagGuiTest {
         Scene scene = new Scene(root, 1024, 768);
 
         primaryStage.setScene(scene);
-
-        Map<Integer, Set<Tag>> levelTagMap =
-                GraphLevelAlgorithm.calculateLevels(tagTree.getTagSubTagMap(), tagTree.getTagSuperTagMap());
-        Layout layout = new GraphLayout(graph, levelTagMap);
-
-        layout.execute();
-        graph.addEdges(tagTree);
-
     }
 
     public static final Tag TAG_NUS = new Tag("nus");

@@ -2,22 +2,21 @@ package seedu.address.ui.taggui;
 
 import javafx.scene.layout.Pane;
 import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
 import javafx.scene.Group;
-        import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane;
+import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.ReadOnlyTagTree;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.TagManager;
 import seedu.address.model.tag.TagTree;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class TagGraph {
 
     public static final String MESSAGE_NO_CONTACTS = "No tagged contacts";
-    public static final String MESSAGE_NUM_REMAINING_CONTACTS = "%s other contacts";
+    public static final String MESSAGE_NUM_REMAINING_CONTACTS = "%d more";
 
     private TreeModel model;
 
@@ -48,7 +47,8 @@ public class TagGraph {
 
     }
 
-    public void addTagTree(TagTree tagTree, AddressBook contactTagMap) {
+    public void addTagTree(ReadOnlyTagTree tagTree, ReadOnlyAddressBook contactTagMap) {
+        model.clear();
         Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
         for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
             Tag key = entry.getKey();
@@ -66,7 +66,7 @@ public class TagGraph {
         getCellLayer().getChildren().addAll(model.getCells());
     }
 
-    public void addEdges(TagTree tagTree) {
+    public void addEdges(ReadOnlyTagTree tagTree) {
         Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
         for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
             Tag key = entry.getKey();
@@ -75,7 +75,7 @@ public class TagGraph {
         getCellLayer().getChildren().addAll(model.getEdges());
     }
 
-    private String getSummaryOfTag(AddressBook contactTagMap, Tag tag) {
+    private String getSummaryOfTag(ReadOnlyAddressBook contactTagMap, Tag tag) {
         Set<Person> personSet = contactTagMap.getPersonsWithTag(tag);
         if (personSet.size() == 0) {
             return MESSAGE_NO_CONTACTS;
