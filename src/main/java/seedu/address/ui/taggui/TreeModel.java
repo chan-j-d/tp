@@ -15,15 +15,15 @@ public class TreeModel {
     Map<Tag,Cell> cellMap; // <id,cell>
 
     public TreeModel() {
-
-        // clear model, create lists
-        clear();
+        cells = new ArrayList<>();
+        edges = new ArrayList<>();
+        cellMap = new HashMap<>();
     }
 
     public void clear() {
-        cells = new ArrayList<>();
-        edges = new ArrayList<>();
-        cellMap = new HashMap<>(); // <id,cell>
+        cells.clear();
+        edges.clear();
+        cellMap.clear();
     }
 
     public void addCell(Tag tag, String contactDetails) {

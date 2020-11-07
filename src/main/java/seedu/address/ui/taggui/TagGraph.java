@@ -47,7 +47,12 @@ public class TagGraph {
 
     }
 
+    public void clear() {
+        getCellLayer().getChildren().clear();
+    }
+
     public void addTagTree(ReadOnlyTagTree tagTree, ReadOnlyAddressBook contactTagMap) {
+        clear();
         model.clear();
         Map<Tag, Set<Tag>> tagSubTagMap = tagTree.getTagSubTagMap();
         for (Map.Entry<Tag, Set<Tag>> entry : tagSubTagMap.entrySet()) {
