@@ -179,6 +179,14 @@ public class MainWindow extends UiPart<Stage> {
         reminderWindow.show();
     }
 
+    public void handleTagTreeDisplay() {
+        if (!tagTreeWindow.isShowing()) {
+            tagTreeWindow.show();
+        } else {
+            tagTreeWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -193,10 +201,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    private void handleTagTreeView() {
-        if (!)
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -254,6 +258,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
+            if (commandResult.isShowTagTree()) {
+                handleTagTreeDisplay();
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -267,9 +275,4 @@ public class MainWindow extends UiPart<Stage> {
     }
 
 
-    public CommandResult showTagGui() {
-        TagGuiTest test = new TagGuiTest();
-        test.show();
-        return new CommandResult("test shown");
-    }
 }

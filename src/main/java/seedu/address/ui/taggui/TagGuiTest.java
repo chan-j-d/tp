@@ -62,6 +62,10 @@ public class TagGuiTest {
         stage.hide();
     }
 
+    public boolean isShowing() {
+        return stage.isShowing();
+    }
+
 
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
