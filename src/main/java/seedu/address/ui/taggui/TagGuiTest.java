@@ -1,7 +1,13 @@
 package seedu.address.ui.taggui;
 
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ContactTagIntegrationManager;
@@ -37,6 +43,12 @@ public class TagGuiTest {
         this.tagTree = tagTree;
         this.addressBook = addressBook;
         start(stage);
+        stage.getScene().setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                hide();
+            }
+        });
+
     }
 
     private void updateGraph() {
@@ -73,6 +85,7 @@ public class TagGuiTest {
         root.setCenter(graph.getScrollPane());
 
         Scene scene = new Scene(root, 1024, 768);
+
 
         primaryStage.setScene(scene);
     }

@@ -111,7 +111,7 @@ public class TagGraph {
         model.setCellLocation(tag, xCoordinate, yCoordinate);
     }
 
-    public ScrollPane getScrollPane() {
+    public ZoomableScrollPane getScrollPane() {
         return this.scrollPane;
     }
 

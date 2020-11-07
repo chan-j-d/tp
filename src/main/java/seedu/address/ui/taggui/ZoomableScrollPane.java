@@ -1,6 +1,8 @@
 package seedu.address.ui.taggui;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.transform.Scale;
 import javafx.scene.Group;
@@ -16,8 +18,8 @@ public class ZoomableScrollPane extends ScrollPane {
     Group zoomGroup;
     Scale scaleTransform;
     Node content;
-    double scaleValue = 1.0;
-    double delta = 0.1;
+    double scaleValue = 5.0;
+    double delta = 1.0;
 
     public ZoomableScrollPane(Node content) {
         this.content = content;
@@ -30,6 +32,17 @@ public class ZoomableScrollPane extends ScrollPane {
         zoomGroup.getTransforms().add(scaleTransform);
 
         zoomGroup.setOnScroll(new ZoomHandler());
+
+        addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.EQUALS && event.isControlDown() && event.isShiftDown()) {
+                zoomIn();
+            }
+        });
+        addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.MINUS && event.isControlDown()) {
+                zoomOut();
+            }
+        });
     }
 
     public double getScaleValue() {
