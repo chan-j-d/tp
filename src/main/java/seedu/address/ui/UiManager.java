@@ -59,7 +59,6 @@ public class UiManager implements Ui {
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
 
-        mainWindow.showTagGui();
     }
 
     private Image getImage(String imagePath) {

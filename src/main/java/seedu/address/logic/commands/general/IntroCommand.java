@@ -16,7 +16,7 @@ public class IntroCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_INTRO_MESSAGE, false, false);
+        return new CommandResult(SHOWING_INTRO_MESSAGE, false, false, false);
     }
 
 }

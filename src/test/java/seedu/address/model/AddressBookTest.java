@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -136,6 +138,12 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        @Override
+        public Set<Person> getPersonsWithTag(Tag tag) {
+            throw new AssertionError("This method should not be called!");
+        }
+
     }
 
 }

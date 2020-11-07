@@ -16,7 +16,7 @@ public class ShowReminderEventCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_REMINDER_MESSAGE, false, false);
+        return new CommandResult(SHOWING_REMINDER_MESSAGE, false, false, false);
     }
 
 }

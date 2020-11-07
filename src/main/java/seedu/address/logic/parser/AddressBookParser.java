@@ -20,6 +20,7 @@ import seedu.address.logic.commands.general.HelpCommand;
 import seedu.address.logic.commands.reminders.ListReminderEventCommand;
 import seedu.address.logic.commands.reminders.ShowReminderEventCommand;
 import seedu.address.logic.commands.tags.ListTagCommand;
+import seedu.address.logic.commands.tags.ViewTagTreeCommand;
 import seedu.address.logic.parser.contacts.AddContactCommandParser;
 import seedu.address.logic.parser.contacts.DeleteContactCommandParser;
 import seedu.address.logic.parser.contacts.EditContactCommandParser;
@@ -160,6 +161,9 @@ public class AddressBookParser {
 
             case DELETE:
                 return new DeleteTagCommandParser().parse(arguments);
+
+            case VIEWTREE:
+                return new ViewTagTreeCommand();
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

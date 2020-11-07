@@ -25,6 +25,7 @@ public enum CommandWord {
     SHOW("show", List.of(CommandType.REMINDER)),
     SORT("sort", List.of(CommandType.CONTACT, CommandType.EVENT)),
     PERMASORT("psort", List.of(CommandType.CONTACT)),
+    VIEWTREE("viewtree", List.of(CommandType.TAG)),
     DEFAULT("", List.of());
 
     /**
