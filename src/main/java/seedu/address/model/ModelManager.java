@@ -225,6 +225,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event target) {
         calendar.removeEvent(target);
+        reminders.deleteReminderOfEvent(target);
     }
 
     @Override
@@ -298,8 +299,8 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         calendar.setEvent(target, editedEvent);
+        reminders.updateReminder(target, editedEvent);
     }
 
     @Override
@@ -368,6 +369,14 @@ public class ModelManager implements Model {
     @Override
     public Set<Person> getPersonsRecursive(Tag tag) {
         return contactTagIntegrationManager.getAllPersonsUnderTag(tag);
+    }
+
+    @Override
+    public void deletePersonsByTag(Tag tag) {
+        //clears all deleted persons from events associating them.
+        contactTagIntegrationManager.getAllPersonsUnderTag(tag).stream()
+                                    .forEach(person -> { calendar.deletePersonAssociation(person); });
+        contactTagIntegrationManager.deleteTagAndDirectContacts(tag);
     }
 
     // Filter/sort related methods

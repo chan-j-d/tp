@@ -22,6 +22,7 @@ import seedu.address.logic.commands.reminders.ShowReminderEventCommand;
 import seedu.address.logic.commands.tags.ListTagCommand;
 import seedu.address.logic.commands.tags.ViewTagTreeCommand;
 import seedu.address.logic.parser.contacts.AddContactCommandParser;
+import seedu.address.logic.parser.contacts.DeleteContactByTagCommandParser;
 import seedu.address.logic.parser.contacts.DeleteContactCommandParser;
 import seedu.address.logic.parser.contacts.EditContactCommandParser;
 import seedu.address.logic.parser.contacts.FindContactCommandParser;
@@ -33,11 +34,13 @@ import seedu.address.logic.parser.events.EditEventCommandParser;
 import seedu.address.logic.parser.events.FindEventCommandParser;
 import seedu.address.logic.parser.events.RemindEventCommandParser;
 import seedu.address.logic.parser.events.SortEventCommandParser;
+import seedu.address.logic.parser.events.ViewEventCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.reminders.DeleteReminderCommandParser;
 import seedu.address.logic.parser.tags.AddTagCommandParser;
 import seedu.address.logic.parser.tags.DeleteTagCommandParser;
 import seedu.address.logic.parser.tags.EditTagCommandParser;
+import seedu.address.logic.parser.tags.FindTagCommandParser;
 import seedu.address.logic.parser.tags.ViewTagCommandParser;
 
 /**
@@ -110,6 +113,9 @@ public class AddressBookParser {
             case PERMASORT:
                 return new PermaSortContactCommandParser().parse(arguments);
 
+            case DELETE_BY_TAG:
+                return new DeleteContactByTagCommandParser().parse(arguments);
+
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
@@ -135,6 +141,9 @@ public class AddressBookParser {
 
             case LIST:
                 return new ListEventCommand();
+
+            case VIEW:
+                return new ViewEventCommandParser().parse(arguments);
 
             case SORT:
                 return new SortEventCommandParser().parse(arguments);
@@ -164,6 +173,9 @@ public class AddressBookParser {
 
             case VIEWTREE:
                 return new ViewTagTreeCommand();
+
+            case FIND:
+                return new FindTagCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -17,15 +17,16 @@ public enum CommandWord {
     DELETE("delete", List.of(CommandType.CONTACT, CommandType.EVENT, CommandType.TAG, CommandType.REMINDER)),
     EDIT("edit", List.of(CommandType.CONTACT, CommandType.EVENT, CommandType.TAG)),
     EXIT("exit", List.of()),
-    FIND("find", List.of(CommandType.CONTACT, CommandType.EVENT)),
+    FIND("find", List.of(CommandType.CONTACT, CommandType.EVENT, CommandType.TAG)),
     HELP("help", List.of()),
     INTRO("intro", List.of()),
     LIST("list", List.of(CommandType.CONTACT, CommandType.EVENT, CommandType.TAG, CommandType.REMINDER)),
-    VIEW("view", List.of(CommandType.TAG)),
+    VIEW("view", List.of(CommandType.EVENT, CommandType.TAG)),
     SHOW("show", List.of(CommandType.REMINDER)),
     SORT("sort", List.of(CommandType.CONTACT, CommandType.EVENT)),
     PERMASORT("psort", List.of(CommandType.CONTACT)),
     VIEWTREE("viewtree", List.of(CommandType.TAG)),
+    DELETE_BY_TAG("deletebytag", List.of(CommandType.CONTACT)),
     DEFAULT("", List.of());
 
     /**
