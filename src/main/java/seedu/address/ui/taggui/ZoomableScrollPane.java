@@ -18,8 +18,8 @@ public class ZoomableScrollPane extends ScrollPane {
     Group zoomGroup;
     Scale scaleTransform;
     Node content;
-    double scaleValue = 5.0;
-    double delta = 1.0;
+    double scaleValue = 1.0;
+    double delta = 0.1;
 
     public ZoomableScrollPane(Node content) {
         this.content = content;
