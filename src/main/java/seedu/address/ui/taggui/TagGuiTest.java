@@ -85,16 +85,10 @@ public class TagGuiTest {
 
     public void start(Stage primaryStage) {
         BorderPane root = new BorderPane();
-        VBox box = new VBox();
-        TextField textInput = new TextField();
-        textInput.setOnAction(event -> {textInput.clear();});
-        box.setFillWidth(true);
-        box.setPrefHeight(1024);
-        box.getChildren().addAll(textInput, root);
 
         root.setCenter(graph.getScrollPane());
 
-        Scene scene = new Scene(box, 1024, 768);
+        Scene scene = new Scene(root, 1024, 768);
 
 
         primaryStage.setScene(scene);
