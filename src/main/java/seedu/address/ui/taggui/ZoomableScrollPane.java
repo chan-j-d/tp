@@ -11,7 +11,7 @@ import javafx.scene.control.ScrollPane;
 
 
 /**
- * Taken from
+ * Taken from:
  * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
  */
 public class ZoomableScrollPane extends ScrollPane {
@@ -33,15 +33,17 @@ public class ZoomableScrollPane extends ScrollPane {
 
         zoomGroup.setOnScroll(new ZoomHandler());
 
-        addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.EQUALS && event.isControlDown() && event.isShiftDown()) {
                 zoomIn();
             }
+            event.consume();
         });
-        addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.MINUS && event.isControlDown()) {
                 zoomOut();
             }
+            event.consume();
         });
     }
 

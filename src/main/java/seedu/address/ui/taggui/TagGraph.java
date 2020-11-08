@@ -13,6 +13,10 @@ import seedu.address.model.tag.TagTree;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Adapted from:
+ * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
+ */
 public class TagGraph {
 
     public static final String MESSAGE_NO_CONTACTS = "No tagged contacts";

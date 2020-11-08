@@ -6,6 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Adapted from:
+ * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
+ */
 public class Cell extends Pane {
 
     Tag tag;

@@ -4,6 +4,10 @@ import javafx.scene.shape.Line;
 
 import java.util.List;
 
+/**
+ * Adapted from:
+ * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
+ */
 public class Edge extends Group {
 
     private static final double ARROW_ANGLE = 0.4;
