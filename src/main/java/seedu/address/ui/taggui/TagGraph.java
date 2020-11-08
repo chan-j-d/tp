@@ -13,10 +13,8 @@ import seedu.address.model.tag.TagTree;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Adapted from:
- * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
- */
+//@@author Roland
+//Reused from https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
 public class TagGraph {
 
     public static final String MESSAGE_NO_CONTACTS = "No tagged contacts";
@@ -54,6 +52,27 @@ public class TagGraph {
     public void clear() {
         getCellLayer().getChildren().clear();
     }
+
+    public void setCellLocation(Tag tag, double xCoordinate, double yCoordinate) {
+        model.setCellLocation(tag, xCoordinate, yCoordinate);
+    }
+
+    public ZoomableScrollPane getScrollPane() {
+        return this.scrollPane;
+    }
+
+    public Pane getCellLayer() {
+        return this.cellLayer;
+    }
+    public TreeModel getModel() {
+        return model;
+    }
+
+    public double getScale() {
+        return this.scrollPane.getScaleValue();
+    }
+
+    //@@author
 
     public void addTagTree(ReadOnlyTagTree tagTree, ReadOnlyAddressBook contactTagMap) {
         clear();
@@ -109,25 +128,5 @@ public class TagGraph {
             currentCount++;
         }
         return string;
-    }
-
-    public void setCellLocation(Tag tag, double xCoordinate, double yCoordinate) {
-        model.setCellLocation(tag, xCoordinate, yCoordinate);
-    }
-
-    public ZoomableScrollPane getScrollPane() {
-        return this.scrollPane;
-    }
-
-    public Pane getCellLayer() {
-        return this.cellLayer;
-    }
-    public TreeModel getModel() {
-        return model;
-    }
-
-
-    public double getScale() {
-        return this.scrollPane.getScaleValue();
     }
 }

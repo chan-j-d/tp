@@ -9,11 +9,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 
-
-/**
- * Taken from:
- * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
- */
+//@@author Roland
+//Reused from https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
 public class ZoomableScrollPane extends ScrollPane {
     Group zoomGroup;
     Scale scaleTransform;
@@ -148,5 +145,4 @@ public class ZoomableScrollPane extends ScrollPane {
     }
 }
 
-
-
+//@@author

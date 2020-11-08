@@ -4,10 +4,8 @@ import javafx.scene.shape.Line;
 
 import java.util.List;
 
-/**
- * Adapted from:
- * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
- */
+//@@author Roland
+//Reused from https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
 public class Edge extends Group {
 
     private static final double ARROW_ANGLE = 0.4;
@@ -38,6 +36,15 @@ public class Edge extends Group {
         getChildren().addAll(createArrowLines());
 
     }
+
+    public Cell getSource() {
+        return source;
+    }
+
+    public Cell getTarget() {
+        return target;
+    }
+    //@@author
 
     public List<Line> createArrowLines() {
         Line arrow1 = new Line();
@@ -76,14 +83,6 @@ public class Edge extends Group {
             arrow2.setStartY(dX * sinTheta + dY * cosTheta + endY);
         }
         return List.of(arrow1, arrow2);
-    }
-
-    public Cell getSource() {
-        return source;
-    }
-
-    public Cell getTarget() {
-        return target;
     }
 
 

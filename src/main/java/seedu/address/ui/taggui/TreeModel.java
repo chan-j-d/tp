@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Adapted from:
- * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
- */
+//@@author Roland
+//Reused from https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
 public class TreeModel {
 
     List<Cell> cells;
@@ -66,3 +64,4 @@ public class TreeModel {
 
 
 }
+//@@author

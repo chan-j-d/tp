@@ -30,10 +30,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Adapted from:
- * https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
- */
+//@@author Roland
+//Reused from https://stackoverflow.com/questions/30679025/graph-visualisation-like-yfiles-in-javafx
 public class TagGuiTest {
 
     private final TagGraph graph;
@@ -95,3 +93,5 @@ public class TagGuiTest {
     }
 
 }
+
+//@@author
